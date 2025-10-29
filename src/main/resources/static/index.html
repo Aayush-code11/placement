@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Training & Placement Management System</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; flex-direction: column; }
+    .hero { text-align: center; padding: 60px 20px; color: white; }
+    .hero h1 { font-size: 48px; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero p { font-size: 20px; margin-bottom: 40px; opacity: 0.9; }
+    .auth-buttons { display: flex; gap: 20px; justify-content: center; margin-bottom: 40px; }
+    .auth-btn { padding: 15px 40px; font-size: 18px; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; text-decoration: none; display: inline-block; transition: transform 0.2s; }
+    .auth-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+    .login-btn { background: #fff; color: #667eea; }
+    .register-btn { background: #28a745; color: white; }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    .feature-card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; }
+    .feature-card h3 { color: #667eea; margin-bottom: 15px; font-size: 24px; }
+    .feature-card p { color: #666; line-height: 1.6; }
+    .icon { font-size: 48px; margin-bottom: 15px; }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>🎓 Training & Placement Management System</h1>
+    <p>Streamline your campus recruitment process</p>
+    
+    <div class="auth-buttons">
+      <a href="/login.html" class="auth-btn login-btn">🔐 Login</a>
+      <a href="/register.html" class="auth-btn register-btn">📝 Register</a>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="feature-card">
+      <div class="icon">👨‍🎓</div>
+      <h3>For Students</h3>
+      <p>View job opportunities, apply to companies, track application status, and upload resumes</p>
+      <a href="/student.html" style="color: #667eea; font-weight: bold;">Student Portal →</a>
+    </div>
+    
+    <div class="feature-card">
+      <div class="icon">🏢</div>
+      <h3>For Companies</h3>
+      <p>Post job openings, view eligible candidates, download resumes, and manage selections</p>
+      <a href="/company.html" style="color: #667eea; font-weight: bold;">Company Portal →</a>
+    </div>
+    
+    <div class="feature-card">
+      <div class="icon">👨‍💼</div>
+      <h3>For Admins</h3>
+      <p>Manage students & companies, track placements, generate reports, and post announcements</p>
+      <a href="/admin.html" style="color: #667eea; font-weight: bold;">Admin Portal →</a>
+    </div>
+  </div>
+</body>
+</html>

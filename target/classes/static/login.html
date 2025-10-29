@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login - Placement System</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .auth-container { max-width: 400px; margin: 50px auto; padding: 30px; background: #f5f5f5; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .auth-container h1 { text-align: center; color: #333; margin-bottom: 30px; }
+    .auth-container form { display: flex; flex-direction: column; gap: 15px; }
+    .auth-container label { font-weight: 500; }
+    .auth-container input { padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; }
+    .auth-container button { padding: 12px; background: #007bff; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; font-weight: bold; }
+    .auth-container button:hover { background: #0056b3; }
+    .auth-links { text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; }
+    .auth-links a { color: #007bff; text-decoration: none; font-weight: 500; }
+    .auth-links a:hover { text-decoration: underline; }
+    .divider { margin: 10px 0; color: #666; }
+  </style>
+</head>
+<body>
+  <div class="auth-container">
+    <h1>🔐 Login</h1>
+    <form action="/doLogin" method="post">
+      <label>Username <input name="username" required placeholder="Enter your username"></label>
+      <label>Password <input name="password" type="password" required placeholder="Enter your password"></label>
+      <button type="submit">Login</button>
+    </form>
+    <div class="auth-links">
+      <p class="divider">Don't have an account?</p>
+      <a href="/register.html" style="font-size: 18px;">📝 Register Here</a>
+      <p class="divider" style="margin-top: 20px;">or</p>
+      <a href="/">🏠 Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>

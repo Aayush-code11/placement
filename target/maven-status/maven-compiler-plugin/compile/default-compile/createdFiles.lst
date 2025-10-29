@@ -1,0 +1,14 @@
+com\example\placement\security\SecurityConfig.class
+com\example\placement\model\Company.class
+com\example\placement\security\RoleBasedAuthSuccessHandler.class
+com\example\placement\model\Student.class
+com\example\placement\controller\AuthController.class
+com\example\placement\model\JobApplication.class
+com\example\placement\security\CustomUserDetailsService.class
+com\example\placement\model\User.class
+com\example\placement\PlacementApplication.class
+com\example\placement\repository\StudentRepository.class
+com\example\placement\repository\UserRepository.class
+com\example\placement\repository\CompanyRepository.class
+com\example\placement\controller\MainController.class
+com\example\placement\repository\JobApplicationRepository.class
