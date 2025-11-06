@@ -1,7 +1,11 @@
 package com.example.placement.repository;
 
-import com.example.placement.model.Company;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.example.placement.model.Company;
+
 public interface CompanyRepository extends JpaRepository<Company, Long> {
+	Optional<Company> findByUserId(Long userId);
 }

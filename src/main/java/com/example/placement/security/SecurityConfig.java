@@ -2,6 +2,7 @@ package com.example.placement.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -33,6 +34,8 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/css/**", "/js/**", "/", "/index.html", "/login.html", "/register", "/register.html").permitAll()
                 .requestMatchers("/api/students", "/api/companies", "/api/applications").permitAll()
+                // only admin can update application statuses
+                .requestMatchers(HttpMethod.POST, "/api/applications/*/status").hasAuthority("ADMIN")
                 .requestMatchers("/api/student/**").hasAuthority("STUDENT")
                 .requestMatchers("/api/admin/**").hasAuthority("ADMIN")
                 .requestMatchers("/admin.html", "/admin/**").hasAuthority("ADMIN")
