@@ -63,7 +63,7 @@ public class StudentController {
                 resume.transferTo(dest);
                 s.setResumeFileName(fname);
             } catch (IOException e) {
-                e.printStackTrace();
+                return "redirect:/student.html?error=upload";
             }
         }
         studentRepo.save(s);
@@ -73,7 +73,6 @@ public class StudentController {
     @GetMapping("/api/student/me")
     @ResponseBody
     public Object getCurrentStudent() {
-        // simple safety: find student linked to logged-in user
         org.springframework.security.core.Authentication auth = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication();
         if (auth == null || !auth.isAuthenticated()) return java.util.Map.of("error", "Not authenticated");
         String username = auth.getName();

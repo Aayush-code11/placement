@@ -15,10 +15,9 @@ public class JobApplication {
     @ManyToOne
     private Student student;
 
-    @ManyToOne
-    private Company company;
-
-    private String status; // Applied, Shortlisted, Selected, Rejected
+    private String companyName;
+    private String jobRole;
+    private String status;
 
     public JobApplication() {}
 
@@ -26,8 +25,10 @@ public class JobApplication {
     public void setId(Long id) { this.id = id; }
     public Student getStudent() { return student; }
     public void setStudent(Student student) { this.student = student; }
-    public Company getCompany() { return company; }
-    public void setCompany(Company company) { this.company = company; }
+    public String getCompanyName() { return companyName; }
+    public void setCompanyName(String companyName) { this.companyName = companyName; }
+    public String getJobRole() { return jobRole; }
+    public void setJobRole(String jobRole) { this.jobRole = jobRole; }
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 }

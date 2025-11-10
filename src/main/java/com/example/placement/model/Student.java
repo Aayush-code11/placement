@@ -17,13 +17,9 @@ public class Student {
     private Double cgpa;
     private String email;
     private String resumeFileName;
-    
-    // Link to user account
     private Long userId;
 
     public Student() {}
-
-    // getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getName() { return name; }

@@ -1,10 +1,5 @@
 C:\Users\Lenovo\OneDrive\Desktop\placement\src\main\java\com\example\placement\controller\AdminController.java
-C:\Users\Lenovo\OneDrive\Desktop\placement\src\main\java\com\example\placement\controller\ApplicationController.java
 C:\Users\Lenovo\OneDrive\Desktop\placement\src\main\java\com\example\placement\controller\AuthController.java
-C:\Users\Lenovo\OneDrive\Desktop\placement\src\main\java\com\example\placement\controller\CompanyApplicationController.java
-C:\Users\Lenovo\OneDrive\Desktop\placement\src\main\java\com\example\placement\controller\CompanyController.java
-C:\Users\Lenovo\OneDrive\Desktop\placement\src\main\java\com\example\placement\controller\MainController.java
-C:\Users\Lenovo\OneDrive\Desktop\placement\src\main\java\com\example\placement\controller\StudentApplicationController.java
 C:\Users\Lenovo\OneDrive\Desktop\placement\src\main\java\com\example\placement\controller\StudentController.java
 C:\Users\Lenovo\OneDrive\Desktop\placement\src\main\java\com\example\placement\model\Company.java
 C:\Users\Lenovo\OneDrive\Desktop\placement\src\main\java\com\example\placement\model\JobApplication.java
@@ -15,6 +10,4 @@ C:\Users\Lenovo\OneDrive\Desktop\placement\src\main\java\com\example\placement\r
 C:\Users\Lenovo\OneDrive\Desktop\placement\src\main\java\com\example\placement\repository\JobApplicationRepository.java
 C:\Users\Lenovo\OneDrive\Desktop\placement\src\main\java\com\example\placement\repository\StudentRepository.java
 C:\Users\Lenovo\OneDrive\Desktop\placement\src\main\java\com\example\placement\repository\UserRepository.java
-C:\Users\Lenovo\OneDrive\Desktop\placement\src\main\java\com\example\placement\security\CustomUserDetailsService.java
-C:\Users\Lenovo\OneDrive\Desktop\placement\src\main\java\com\example\placement\security\RoleBasedAuthSuccessHandler.java
 C:\Users\Lenovo\OneDrive\Desktop\placement\src\main\java\com\example\placement\security\SecurityConfig.java

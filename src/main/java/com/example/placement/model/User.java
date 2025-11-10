@@ -14,8 +14,8 @@ public class User {
     private Long id;
 
     private String username;
-    private String password; // stored hashed (BCrypt)
-    private String role; // STUDENT, COMPANY, ADMIN
+    private String password;
+    private String role;
 
     public User() {}
 

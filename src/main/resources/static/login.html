@@ -17,16 +17,18 @@
     .auth-links a { color: #007bff; text-decoration: none; font-weight: 500; }
     .auth-links a:hover { text-decoration: underline; }
     .divider { margin: 10px 0; color: #666; }
+    .error-msg { color: red; text-align: center; margin-top: 10px; font-weight: 500; }
   </style>
 </head>
 <body>
   <div class="auth-container">
     <h1>🔐 Login</h1>
-    <form action="/doLogin" method="post">
-      <label>Username <input name="username" required placeholder="Enter your username"></label>
-      <label>Password <input name="password" type="password" required placeholder="Enter your password"></label>
+    <form id="loginForm">
+      <label>Username <input name="username" id="username" required placeholder="Enter your username"></label>
+      <label>Password <input name="password" id="password" type="password" required placeholder="Enter your password"></label>
       <button type="submit">Login</button>
     </form>
+    <div id="errorMsg" class="error-msg"></div>
     <div class="auth-links">
       <p class="divider">Don't have an account?</p>
       <a href="/register.html" style="font-size: 18px;">📝 Register Here</a>
@@ -34,5 +36,42 @@
       <a href="/">🏠 Back to Home</a>
     </div>
   </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const errorMsg = document.getElementById('errorMsg');
+      
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          // Store user info
+          sessionStorage.setItem('username', data.username);
+          sessionStorage.setItem('role', data.role);
+          
+          // Redirect based on role
+          if (data.role === 'ADMIN') {
+            window.location.href = '/admin.html';
+          } else {
+            window.location.href = '/student.html';
+          }
+        } else {
+          errorMsg.textContent = data.error || 'Login failed';
+        }
+      } catch (error) {
+        errorMsg.textContent = 'Network error. Please try again.';
+      }
+    });
+  </script>
 </body>
 </html>

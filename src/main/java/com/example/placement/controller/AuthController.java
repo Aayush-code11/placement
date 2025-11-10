@@ -1,50 +1,93 @@
 package com.example.placement.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.placement.model.Student;
 import com.example.placement.model.User;
 import com.example.placement.repository.StudentRepository;
 import com.example.placement.repository.UserRepository;
 
-@Controller
+@RestController
+@RequestMapping("/api")
 public class AuthController {
 
-    private final UserRepository userRepo;
-    private final StudentRepository studentRepo;
+    private final UserRepository userRepository;
+    private final StudentRepository studentRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public AuthController(UserRepository userRepo, StudentRepository studentRepo) {
-        this.userRepo = userRepo;
-        this.studentRepo = studentRepo;
+    public AuthController(UserRepository userRepository, StudentRepository studentRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.studentRepository = studentRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping({"/login","/login.html"})
-    public String loginPage() { return "login.html"; }
+    @PostMapping("/register")
+    public Map<String, Object> register(@RequestBody Map<String, String> request) {
+        Map<String, Object> response = new HashMap<>();
+        
+        String username = request.get("username");
+        String email = request.get("email");
+        String password = request.get("password");
+        String role = request.get("role");
 
-    @GetMapping({"/register","/register.html"})
-    public String registerPage() { return "register.html"; }
+        if (userRepository.findByUsername(username).isPresent()) {
+            response.put("success", false);
+            response.put("error", "Username already exists");
+            return response;
+        }
 
-    @PostMapping("/api/register")
-    @ResponseBody
-    public Object register(@RequestParam String username, @RequestParam String password, @RequestParam String role) {
-        if (userRepo.findByUsername(username).isPresent()) {
-            return Map.of("error","User exists");
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setRole(role);
+        userRepository.save(user);
+
+        if ("STUDENT".equals(role)) {
+            Student student = new Student();
+            student.setName(username);
+            student.setEmail(email);
+            student.setRoll("");
+            student.setBranch("");
+            student.setCgpa(0.0);
+            studentRepository.save(student);
         }
-        User u = new User();
-        u.setUsername(username);
-        u.setPassword(password); // plaintext for now (existing app uses same)
-        u.setRole(role);
-        userRepo.save(u);
-        if ("STUDENT".equalsIgnoreCase(role)) {
-            Student s = new Student(); s.setName(username); s.setEmail(username+"@example.com"); s.setRoll(""); s.setBranch(""); s.setCgpa(0.0);
-            studentRepo.save(s);
-        }
-            return Map.of("success", true);
-        }
+
+        response.put("success", true);
+        response.put("message", "Registration successful");
+        return response;
     }
+
+    @PostMapping("/login")
+    public Map<String, Object> login(@RequestBody Map<String, String> request) {
+        Map<String, Object> response = new HashMap<>();
+        
+        String username = request.get("username");
+        String password = request.get("password");
+
+        User user = userRepository.findByUsername(username).orElse(null);
+        
+        if (user == null) {
+            response.put("success", false);
+            response.put("error", "User not found");
+            return response;
+        }
+
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            response.put("success", false);
+            response.put("error", "Invalid password");
+            return response;
+        }
+
+        response.put("success", true);
+        response.put("role", user.getRole());
+        response.put("username", user.getUsername());
+        return response;
+    }
+}
